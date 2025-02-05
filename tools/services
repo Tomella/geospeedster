@@ -12,13 +12,13 @@ if [ ! -d log ]; then
   mkdir -p log;
 fi
 
-if [ ! -f log/services.log ]; then
-  touch log/services.log;
+if [ ! -f log/geospeedster.log ]; then
+  touch log/geospeedster.log;
 fi
 
-cd services
+cd geospeedster
 # options
-LOGFILE=/home/services/log/services.log
+LOGFILE=/home/services/log/geospeedster.log
 LOCKFILE=/var/lock/subsys/services
 
 # On some machines forever is here

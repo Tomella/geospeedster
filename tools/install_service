@@ -3,8 +3,8 @@
 # Don't really expect this to be run but it gives good hints on what to do to create a service.
 #
 sudo npm install -g forever
-sudo cp /home/services/services/utils/services.service /etc/systemd/system/
-sudo cp /home/services/services/utils/services /sbin
+sudo cp /home/services/geospeedster/utils/services.service /etc/systemd/system/
+sudo cp /home/services/geospeedster/utils/services /sbin
 sudo chmod 755 /sbin/services
 sudo chown root:root /sbin/services
 sudo systemctl enable services
