@@ -1,0 +1,31 @@
+#!/bin/bash
+#
+# Script for starting the services app.
+#
+
+# We need environment variables for passwords and the likes
+. /home/services/.profile
+cd /home/services
+sleep 10s
+
+if [ ! -d log ]; then
+  mkdir -p log;
+fi
+
+if [ ! -f log/services.log ]; then
+  touch log/services.log;
+fi
+
+cd services
+# options
+LOGFILE=/home/services/log/services.log
+LOCKFILE=/var/lock/subsys/services
+
+# On some machines forever is here
+FOREVER=/usr/bin/forever
+if [ ! -f $FOREVER ]; then
+  # if not in the default it is here.
+  FOREVER=/usr/local/bin/forever
+fi
+
+$FOREVER start -a -l $LOGFILE --spinSleepTime 60000 --uid services server.js

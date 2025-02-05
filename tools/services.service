@@ -1,0 +1,12 @@
+[Unit]
+Description=Serivces Logger Daemon
+After=syslog.target network.target network-online.target
+Wants=network-online.target
+
+[Service]
+Type=forking
+ExecStart=/sbin/services
+User=services
+Group=services
+[Install]
+WantedBy=multi-user.target
