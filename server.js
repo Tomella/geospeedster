@@ -25,12 +25,9 @@ app.get("/list/:path", async (req, res) => {
   console.log(req.params.path)
   if(dir) {
     let result = await dir.tree();
-    console.log(result)
     res.send(result);
-
   } else {
-
-    res.send('Yes, ' + req.params.path);
+    res.sendStatus(404);
   }
 
 });

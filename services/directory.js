@@ -6,7 +6,9 @@ const options = {
   followLinks: false,
   size: true,
   hash: false,
-  depth: 5
+  depth: 5,
+  sizeInBytes: false,
+  hash: false,
 };
 
 export default class Directory {
