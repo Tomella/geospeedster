@@ -73,7 +73,7 @@ customElements.define('services-available-item', class AvailableItemElement exte
     attributeChangedCallback(attr, oldValue, newValue) {
         let a = this.$("a");
         switch (attr) {
-            case "name": a.setAttribute('href', "#" + attr);
+            case "name": a.setAttribute('href', "#" + newValue);
                 break;
             case "display": a.innerHTML = newValue;
                 break;

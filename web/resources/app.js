@@ -30,6 +30,18 @@ let data = await root.json();
 let selector = document.querySelector("services-available");
 selector.data = data;
 
+// It's possible we already have a hash
+let hash = location.hash.substring(1);
+if(hash) {
+    let match = data.find(item => item.name == hash);
+    if(match) {
+        loadDetails(match.name, match.display);
+    }
+}
+
 selector.addEventListener('servicesclick', ev => {    
-    loadDetails(ev.detail.name, ev.detail.display);
+    let name = ev.detail.name;
+    let title = ev.detail.display;
+    document.title = title;
+    loadDetails(name, title);
 });
