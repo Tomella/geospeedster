@@ -3,14 +3,13 @@ import config from "./lib/config.js";
 
 const app = express();
 const port = config.port;
-const directories = config.directory_mappings;
+const directories = {};
 
 import Directory from "./services/directory.js"
 
 
-Object.entries(directories).forEach(([name, value]) => {
-  console.log(name,value);
-  directories[name] = new Directory({path: value, name});
+config.directory_mappings.forEach((entry) => {
+  directories[entry.name] = new Directory(entry);
 });
 
 app.use(express.static("web"));
@@ -30,6 +29,10 @@ app.get("/list/:path", async (req, res) => {
     res.sendStatus(404);
   }
 
+});
+
+app.get("/available", async (req, res) => {
+    res.send(config.directory_mappings.map(entry => ({name: entry.name, display: entry.display})));
 });
 
 app.listen(port, () => {

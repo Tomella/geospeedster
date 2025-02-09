@@ -25,4 +25,11 @@ export default class Directory {
     });
   }
 
+  get details() {
+    return {
+      name: this.config.name,
+      display: this.config.name
+    };
+  }
+
 }

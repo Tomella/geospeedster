@@ -40,16 +40,11 @@ customElements.define('services-directory', class DirectoryElement extends HTMLE
         root.appendChild(template.content.cloneNode(true));
     }
 
-
     attributeChangedCallback(attr, oldValue, newValue) {
         switch (attr) {
             case "name": this.$("span").innerHTML = newValue;
                 break;
         }
-    }
-
-    get children() {
-
     }
 
     set children(list) {
