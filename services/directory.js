@@ -9,6 +9,7 @@ const options = {
   depth: 5,
   sizeInBytes: false,
   hash: false,
+  sorted: true
 };
 
 export default class Directory {

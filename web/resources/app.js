@@ -3,7 +3,6 @@ import config from "./config.js";
 let target = document.querySelector("#target");
 
 var loadDetails = async (name, display) => {
-    
     target.innerHTML = "Fetching data...";
     let root = await fetch("list/" + name);
     let data = await root.json();
@@ -18,7 +17,6 @@ var loadDetails = async (name, display) => {
                 source.children = data.children;
             case config.SERVICE_TYPE_FILE:
         }
-
     } else {
         target.innerHTML = "No data fetched";
         target.classList.add("error")
