@@ -1,9 +1,19 @@
 import config from "./config.js";
 
+let lastShown = null;
 let target = document.querySelector("#target");
+let selector = document.querySelector("services-available");
 
 var loadDetails = async (name, display) => {
-    target.innerHTML = "Fetching data...";
+    // Are we already showing this one?
+    if(lastShown == name) {
+        return; 
+    }
+
+    target.innerHTML = "<span class='message'>Fetching data...</span>";
+    
+    selector.setAttribute("active", name);
+
     let root = await fetch("list/" + name);
     let data = await root.json();
 
@@ -21,11 +31,11 @@ var loadDetails = async (name, display) => {
         target.innerHTML = "No data fetched";
         target.classList.add("error")
     }
+    lastShown = name;
 }
 
 let root = await fetch("available");
 let data = await root.json();
-let selector = document.querySelector("services-available");
 selector.data = data;
 
 // It's possible we already have a hash

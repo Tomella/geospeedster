@@ -16,9 +16,13 @@
 
 #target {
     position: fixed;
-    top: 40px;
+    top: 38px;
     left: 0;
     right: 0;
     bottom: 0;
     overflow-y: auto;
+}
+
+.message {
+    padding:20px;
 }

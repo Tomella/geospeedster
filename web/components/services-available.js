@@ -10,13 +10,21 @@ itemTemplate.innerHTML = `
         span {
             padding-left: 20px;
         }
+        .bold {
+            font-weight: bold;
+        }
     </style>
     <span><a href="#"></a></span>
 `;
 
 customElements.define('services-available', class AvailableElement extends HTMLElement {
+    static get observedAttributes() { return ['active']; }
     $(selector) {
         return this.shadowRoot && this.shadowRoot.querySelector(selector)
+    }
+
+    $$(selector) {
+        return this.shadowRoot && this.shadowRoot.querySelectorAll(selector)
     }
 
     constructor() {
@@ -45,11 +53,28 @@ customElements.define('services-available', class AvailableElement extends HTMLE
             });
         });
     }
+
+    attributeChangedCallback(attr, oldValue, newValue) {
+        switch (attr) {
+            case "active": 
+                let elements = this.$$("services-available-item");
+                elements.forEach(el => {
+                    let name = el.getAttribute("name", newValue);
+                    if(name === newValue) {
+                        el.setAttribute('active', "active");
+                    } else {
+                        el.removeAttribute("active");
+                    }
+                });
+                break;
+        }
+    }
+
 });
 
 
 customElements.define('services-available-item', class AvailableItemElement extends HTMLElement {
-    static get observedAttributes() { return ['name', 'display']; }
+    static get observedAttributes() { return ['name', 'display', 'active']; }
 
     $(selector) {
         return this.shadowRoot && this.shadowRoot.querySelector(selector)
@@ -76,6 +101,13 @@ customElements.define('services-available-item', class AvailableItemElement exte
             case "name": a.setAttribute('href', "#" + newValue);
                 break;
             case "display": a.innerHTML = newValue;
+                break;
+            case "active":
+                if(newValue == 'active') {
+                    a.classList.add("bold");
+                } else {
+                    a.classList.remove("bold");
+                }
                 break;
         }
     }
