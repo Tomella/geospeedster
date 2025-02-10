@@ -1,3 +1,24 @@
 .error {
     color:red;
 }
+
+#heading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    margin:5px;
+    border-bottom-style: solid;
+    border-color: grey;
+    border-bottom-width: 1px;
+}
+
+#target {
+    position: fixed;
+    top: 40px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+}
